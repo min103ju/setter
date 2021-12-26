@@ -7,7 +7,9 @@ import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Setter
 @Getter
 @Entity
 @NoArgsConstructor
@@ -29,6 +31,10 @@ public class Post {
         this.title = title;
         this.content = content;
 
+        return new PostResponseDto(this);
+    }
+
+    public PostResponseDto toDto() {
         return new PostResponseDto(this);
     }
 

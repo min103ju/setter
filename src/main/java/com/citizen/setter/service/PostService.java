@@ -27,6 +27,17 @@ public class PostService {
         Post post = postRepository.findById(requestDto.getId())
             .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id = " + requestDto.getId()));
 
+        post.setTitle(requestDto.getTitle());
+        post.setContent(requestDto.getContent());
+
+        return post.toDto();
+    }
+
+    @Transactional
+    public PostResponseDto updateNoSetter(PostRequestDto requestDto) {
+        Post post = postRepository.findById(requestDto.getId())
+            .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id = " + requestDto.getId()));
+
         return post.update(requestDto.getTitle(), requestDto.getContent());
     }
 
