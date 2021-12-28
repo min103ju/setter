@@ -8,6 +8,7 @@ public class PostRequestDto {
     private Long id;
     private String title;
     private String content;
+    private String author;
 
     public PostRequestDto(Long id, String title, String content) {
         this.id = id;

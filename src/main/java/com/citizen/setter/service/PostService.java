@@ -14,6 +14,16 @@ public class PostService {
 
     private final PostRepository postRepository;
 
+    @Transactional
+    public PostResponseDto insertPost(PostRequestDto requestDto) {
+        Post post = new Post();
+        post.setTitle(requestDto.getTitle());
+        post.setContent(requestDto.getContent());
+        post.setAuthor(requestDto.getAuthor());
+
+        return new PostResponseDto(postRepository.save(post));
+    }
+
     @Transactional(readOnly = true)
     public PostResponseDto findPostById(Long id) {
         Post post = postRepository.findById(id)
